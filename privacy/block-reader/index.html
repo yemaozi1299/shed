@@ -27,7 +27,7 @@
         <a class="back" href="../">← 所有隐私政策</a>
         <h1>块朗读 · 隐私政策</h1>
         <p class="meta">
-          适用于 Chrome 扩展「块朗读 · Block Reader」　·　最后更新：2026-10-26
+          适用于 Chrome 扩展「块朗读 · Block Reader」　·　最后更新：2026-10-28
         </p>
 
         <p>
@@ -74,10 +74,37 @@
           （此时会自动回退到本机语音）。
         </p>
 
+        <h2>可选的云音色（自带 Key）</h2>
+        <p>
+          设置页的「云音色」可以在 <strong>关闭 / Azure / MiniMax</strong> 之间三选一。
+          只有你主动选择某一家、并填入自己的 Key 之后，文字才会发送给该服务商；
+          保持「关闭」时，扩展完全不会访问这些接口。
+        </p>
+        <table>
+          <tr><th>服务商</th><th>发送的内容</th><th>数据去向</th></tr>
+          <tr><td>Azure 语音（Microsoft）</td><td>待朗读的文本片段</td><td>Microsoft Azure 语音合成接口</td></tr>
+          <tr><td>MiniMax 语音（稀宇科技）</td><td>待朗读的文本片段</td><td>MiniMax 语音合成接口</td></tr>
+        </table>
+        <p>
+          Key 只保存在本机 <code>chrome.storage.local</code>，不参与 Chrome 账号同步，也不会发送给开发者。
+        </p>
+
+        <h2>可选的 AI 润色（DeepSeek）</h2>
+        <p>
+          开启「AI 润色」并填入<strong>你自己的</strong> DeepSeek API Key 后，
+          被你选中区块里的句子会先发送给 DeepSeek：把数字、日期改写成口语，并标注每句的情绪。
+        </p>
+        <ul>
+          <li><strong>只发送选中区块的句子文本</strong>，不发送网址、页面标题、浏览记录或账号信息。</li>
+          <li>Key 只存本机，不参与同步，开发者无法访问。</li>
+          <li>不开启该选项时，扩展完全不会访问 DeepSeek。</li>
+        </ul>
+
         <h2>设置数据</h2>
         <p>
-          本扩展使用 <code>chrome.storage.sync</code> 保存你的偏好设置：语速、音色、是否自动滚动、高亮方式。
-          这些设置由 Chrome 同步到你的 Google 账号，内容中不包含任何网页文字。卸载扩展即删除。
+          本扩展使用 <code>chrome.storage.sync</code> 保存你的偏好设置：语速、音色、是否自动滚动、高亮方式、云音色选择。
+          这些设置由 Chrome 同步到你的 Google 账号，内容中不包含任何网页文字。
+          各家的 API Key 存在本机 <code>chrome.storage.local</code>，不参与同步。卸载扩展即删除。
         </p>
 
         <h2>权限说明</h2>
@@ -87,8 +114,13 @@
           <tr><td><code>scripting</code></td><td>在你触发后，把朗读脚本注入当前页面</td></tr>
           <tr><td><code>storage</code></td><td>保存语速、音色等偏好</td></tr>
           <tr><td><code>contextMenus</code></td><td>提供右键菜单入口「朗读所选内容」</td></tr>
+          <tr><td><code>downloads</code></td><td>仅在点击「导出音频」时，把合成好的 WAV 保存到你选择的本地位置</td></tr>
+          <tr><td><code>https://*.tts.speech.microsoft.com/</code></td><td>仅在选用 Azure 音色时，发送待合成的文字</td></tr>
+          <tr><td><code>https://api.minimax.chat/</code>、<code>https://api.minimaxi.com/</code></td><td>仅在选用 MiniMax 音色时，发送待合成的文字</td></tr>
+          <tr><td><code>https://api.deepseek.com/</code></td><td>仅在开启 AI 润色时，发送待改写的句子</td></tr>
         </table>
         <p>
+          这些站点权限<strong>只用于调用对应的合成 / 改写接口</strong>，不会用来读取这些网站上的内容。
           本扩展<strong>不申请</strong> <code>&lt;all_urls&gt;</code>，也不会在后台常驻读取你浏览的网页。
         </p>
 
@@ -99,9 +131,10 @@
         <p>本扩展不收集任何个人信息，适用于所有年龄段。</p>
 
         <h2>变更</h2>
-        <p>
-          如果未来接入需要 API Key 的云语音服务（如 Azure），会先更新本政策并说明文字将发送给哪个服务商。
-        </p>
+        <ul>
+          <li>2026-10-28：新增可选的 MiniMax 云音色与 DeepSeek AI 润色，补充数据流向与权限说明。</li>
+          <li>2026-10-28：初版。</li>
+        </ul>
 
         <h2>联系</h2>
         <p>如有疑问，请通过 Chrome Web Store 详情页的「支持」入口联系开发者。</p>
