@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>旁记 SideNote · 隐私政策</title>
+    <meta name="description" content="旁记 SideNote 的隐私政策：不收集数据、无服务器、只读视频自带的字幕。" />
+    <link rel="icon" href="../../assets/icon128.png" />
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../">
+          <img src="../../assets/icon128.png" alt="" />
+          工具棚
+        </a>
+        <nav>
+          <a href="../../">首页</a>
+          <a href="../">隐私政策</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <article>
+        <a class="back" href="../">← 所有隐私政策</a>
+        <h1>旁记 SideNote · 隐私政策</h1>
+        <p class="meta">适用于 Chrome 扩展「旁记 SideNote」　·　最后更新：2026-11-03</p>
+
+        <p>
+          旁记把视频自带的字幕变成一份可检索的双语文字稿。
+          它<b>没有服务器、没有账号、没有统计</b>，所有数据都留在你自己的电脑上；
+          唯一会离开本机的，是你主动配置翻译服务后发送的字幕原文。
+        </p>
+
+        <h2>我们收集什么</h2>
+        <p><b>什么都不收集。</b>没有账号体系、没有埋点、没有崩溃上报、没有广告。</p>
+        <p>
+          开发者不接收、不存储、也无法访问你的任何浏览内容。
+          扩展的全部代码都打包在安装包里，不加载任何远程脚本。
+        </p>
+
+        <h2>数据如何被使用</h2>
+        <ul>
+          <li>
+            <b>字幕文本</b>：扩展读取当前视频页面的字幕文件（B 站的公开接口，
+            或页面里已有的 <code>&lt;track&gt;</code>）。这些文本只用于在你的浏览器里
+            排成文稿、以及（在你配置了翻译服务时）发送给该服务翻译。
+          </li>
+          <li>
+            <b>音频与画面</b>：<b>不读取</b>。本版本不做语音识别、不录屏、不录音，
+            也不向任何服务发送音视频流。
+          </li>
+          <li>
+            <b>本地存储</b>：只保存你的设置（API Key、字号、显示方式等），
+            存在 <code>chrome.storage.local</code>，不参与浏览器账号同步。
+          </li>
+          <li>
+            <b>导出文件</b>：由你自己的浏览器生成并保存到你选择的位置，不经过开发者。
+          </li>
+        </ul>
+
+        <h2>第三方服务</h2>
+        <p>只有在<b>你主动填写 API Key 并开启翻译</b>时，才会发生下面这一次数据外发：</p>
+        <table>
+          <tr><th>服务</th><th>收到什么</th><th>什么时候</th></tr>
+          <tr>
+            <td><a href="https://www.deepseek.com/" target="_blank" rel="noreferrer">DeepSeek</a></td>
+            <td>待翻译的字幕原句（纯文本）</td>
+            <td>抽屉打开且视频有字幕时；连续浏览时按批发送</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.bilibili.com/" target="_blank" rel="noreferrer">哔哩哔哩</a></td>
+            <td>无（只是读取页面已有的公开接口）</td>
+            <td>打开 B 站视频页并点击扩展图标时</td>
+          </tr>
+        </table>
+        <p>
+          DeepSeek 如何处理这些文本，适用其自己的隐私政策。如果你不希望任何文本外发，
+          <b>不要填写 API Key</b>——此时扩展只在本机整理原文，不联网。
+        </p>
+
+        <h2>权限说明</h2>
+        <table>
+          <tr><th>权限</th><th>用途</th></tr>
+          <tr>
+            <td><code>activeTab</code></td>
+            <td>
+              只在你点击扩展图标或按快捷键之后，才获得当前标签页的临时访问权，
+              用于读取该页字幕、显示文稿抽屉。不点击就不生效。
+            </td>
+          </tr>
+          <tr>
+            <td><code>scripting</code></td>
+            <td>用户触发后，向当前页面注入文稿抽屉的脚本（不常驻、不后台运行）。</td>
+          </tr>
+          <tr>
+            <td><code>storage</code></td>
+            <td>保存字号、显示方式、API Key 等设置。</td>
+          </tr>
+          <tr>
+            <td><code>https://api.deepseek.com/</code></td>
+            <td>仅在用户配置并启用翻译时，向 DeepSeek 发送待翻译的字幕原句。</td>
+          </tr>
+          <tr>
+            <td><code>https://*.hdslb.com/</code></td>
+            <td>读取 B 站的字幕文件（字幕 JSON 托管在这个域名下）。</td>
+          </tr>
+        </table>
+        <p>
+          扩展<b>不申请</b> <code>&lt;all_urls&gt;</code>，<b>不使用</b>常驻内容脚本，
+          也不加载远程代码。
+        </p>
+
+        <h2>儿童隐私</h2>
+        <p>本扩展不面向 13 岁以下儿童，也不收集任何年龄信息。</p>
+
+        <h2>政策变更</h2>
+        <p>
+          本政策如有变更，会更新本页顶部的「最后更新」日期。
+          涉及数据外发范围的变更会在扩展的更新说明里单独提示。
+        </p>
+
+        <h2>联系</h2>
+        <p>
+          问题或建议请发邮件至
+          <a href="mailto:yemaozi1299@users.noreply.github.com">yemaozi1299@users.noreply.github.com</a>，
+          或在 <a href="https://github.com/yemaozi1299">GitHub</a> 提 issue。
+        </p>
+      </article>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <span>© 2026 工具棚</span>
+        <a href="../../">返回首页</a>
+      </div>
+    </footer>
+  </body>
+</html>
